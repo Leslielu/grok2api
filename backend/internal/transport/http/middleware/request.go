@@ -96,6 +96,6 @@ func AccessLog(logger *slog.Logger) gin.HandlerFunc {
 		startedAt := time.Now()
 		c.Next()
 		requestID, _ := c.Get(RequestIDKey)
-		logger.Info("http_request", "request_id", requestID, "method", c.Request.Method, "path", c.FullPath(), "status", c.Writer.Status(), "duration_ms", time.Since(startedAt).Milliseconds())
+		logger.Info("http_request", "request_id", requestID, "method", c.Request.Method, "path", c.FullPath(), "status", c.Writer.Status(), "duration_ms", time.Since(startedAt).Milliseconds(), "remote_addr", c.Request.RemoteAddr)
 	}
 }
